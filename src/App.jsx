@@ -5,7 +5,7 @@ import {
   Maximize2, X, Copy, Check, Video, AlertCircle, Loader2, Sparkles,
   Sun, Moon, Menu, LogOut, Users, UserPlus, Trash2, 
   ChevronDown, ChevronRight, Mic, Hash, Search, AudioLines, Activity,
-  FileDown, FileUp, RotateCcw, PlaySquare, ExternalLink, Edit, Plus, Youtube,
+  FileDown, FileUp, RotateCcw, PlaySquare, ExternalLink, Edit, Plus,
   HelpCircle, LayoutDashboard, Settings, Compass, Info, Flame, Target, TrendingUp, BarChart, Gauge,
   Eye, EyeOff, ShoppingBag, Award, Zap, PenTool, Lightbulb, BarChart2, ActivitySquare, Image as ImageLucide
 } from 'lucide-react';
@@ -1493,7 +1493,7 @@ function ToolLearningVideos({ isDark, db, firebaseUser, userRole }) {
               <a href={video.youtubeUrl || `https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noreferrer" className="relative w-full aspect-video bg-black shrink-0 group block overflow-hidden">
                 <img src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`} alt={video.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-40 transition-opacity duration-500" onError={(e) => { e.target.src = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`; }} />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-red-600/90 text-white rounded-full flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-110 transition-transform duration-300 backdrop-blur-md"><Youtube size={32} className="ml-1" /></div>
+                  <div className="w-16 h-16 bg-red-600/90 text-white rounded-full flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-110 transition-transform duration-300 backdrop-blur-md"><PlaySquare size={32} className="ml-1" /></div>
                 </div>
               </a>
               <div className="p-6 flex flex-col flex-1">
@@ -1518,7 +1518,7 @@ function ToolLearningVideos({ isDark, db, firebaseUser, userRole }) {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
           <div className={`w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 border ${isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'}`}>
             <div className={`px-8 py-5 border-b flex items-center justify-between ${isDark ? 'border-slate-800 bg-slate-900/80' : 'border-slate-200 bg-slate-50'}`}>
-              <h3 className={`font-bold text-lg flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}><Youtube size={24} className="text-red-500"/> {editId ? 'Edit Kurikulum Video' : 'Tambah Modul Edukasi'}</h3>
+              <h3 className={`font-bold text-lg flex items-center gap-2 ${isDark ? 'text-white' : 'text-slate-800'}`}><PlaySquare size={24} className="text-red-500"/> {editId ? 'Edit Kurikulum Video' : 'Tambah Modul Edukasi'}</h3>
               <button onClick={closeModal} className={`p-2 rounded-full transition-colors ${isDark ? 'hover:bg-slate-800 text-slate-400' : 'hover:bg-slate-200 text-slate-500'}`}><X size={20}/></button>
             </div>
             
@@ -1840,8 +1840,8 @@ export default function App() {
   const [appBranding, setAppBranding] = useState({ appName: 'GenAffiliate Hub', logoUrl: '' });
 
   const [activeMenu, setActiveMenu] = useState('home');
-
- useEffect(() => {
+//apikey firebase
+  useEffect(() => {
     let unsubscribeAuth = () => {};
 
     const initFirebase = async () => {
