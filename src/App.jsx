@@ -1841,10 +1841,13 @@ export default function App() {
 
   const [activeMenu, setActiveMenu] = useState('home');
 
-  useEffect(() => {
+ useEffect(() => {
     let unsubscribeAuth = () => {};
 
-    const firebaseConfig = {
+    const initFirebase = async () => {
+      try {
+        // PERHATIAN: Masukkan kode rahasia Firebase Anda di bawah ini!
+        const firebaseConfig = {
   apiKey: "AIzaSyANAugZauhUtlmi_53l5zq76g-1kPuM9sE",
   authDomain: "genaffiliate-app.firebaseapp.com",
   projectId: "genaffiliate-app",
@@ -1852,15 +1855,17 @@ export default function App() {
   messagingSenderId: "774665896709",
   appId: "1:774665896709:web:0733c57fd7658b4dea6d6c"
 };
-        if (!firebaseConfig) { setInitError("Menunggu Konfigurasi Sistem. Hubungi Administrator."); setIsInitializing(false); return; }
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const firestoreDb = getFirestore(app);
         setDb(firestoreDb);
 
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { await signInWithCustomToken(auth, __initial_auth_token).catch(e => console.error(e)); } 
-        else { await signInAnonymously(auth).catch(e => console.error(e)); }
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) { 
+          await signInWithCustomToken(auth, __initial_auth_token).catch(e => console.error(e)); 
+        } else { 
+          await signInAnonymously(auth).catch(e => console.error(e)); 
+        }
 
         unsubscribeAuth = onAuthStateChanged(auth, (user) => { setFirebaseUser(user); setIsInitializing(false); });
       } catch (err) { setInitError(err.message); setIsInitializing(false); }
